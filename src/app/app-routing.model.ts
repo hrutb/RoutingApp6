@@ -62,6 +62,7 @@ const route: Routes = [
 
   {
     path: '**',
+    redirectTo: 'login',
     component: PageNotFoundComponent,
     canActivate:[AuthGuard]
   }
