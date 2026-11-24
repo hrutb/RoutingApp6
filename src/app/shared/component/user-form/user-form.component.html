@@ -1,0 +1,128 @@
+ <div class="row mt-5 mb-5">
+
+   <div class="col-md-10 mb-5 mt-5">
+       <div class="card">
+         <div class="card-header">
+
+         </div>
+          <div class="card-body">
+             <form  (ngSubmit)="onAddUser()"  [formGroup]="UserForm">
+           <div class="form-group">
+                <label for="">User name:</label>
+                <input class="form-control" type="text" formControlName="name">
+           </div>
+
+           <div class="form-group">
+                <select for="" class="form-control" formControlName="role">User role:
+                     <option value="buyer">User</option>
+                     <option value="admin">Admin</option>
+                     <option value="superadmin">SuperAdmin</option>
+                </select>
+                <!-- <input class="form-control" type="text" formControlName="role"> -->
+           </div>
+
+           <div class="form-group">
+                <label for="">User exeperience:</label>
+                <input class="form-control" type="text" formControlName="experience">
+           </div>
+
+             <div class="form-group">
+                <label for="">User status:</label>
+                <select type="text" class="form-control" formControlName="status">
+                   <option [ngValue]="true">Yes</option>
+                   <option [ngValue]="false">No</option>
+                </select>
+           </div>
+
+           <div class="form-group">
+              <label for="">User description:</label>
+              <textarea rows="4" class="form-control" formControlName="description">
+              </textarea>
+           </div>
+
+           <div class="form-group">
+                <label for="">User imageUrl:</label>
+                <input class="form-control" type="text" formControlName="imageUrl">
+           </div>
+           <div class="row">
+               <div class="col-md-6">
+                 <h2>Current Address</h2>
+                 <div formGroupName="currentAddress">
+                     <div class="form-group">
+                        <label for="">City:</label>
+                        <input class="form-control" type="text" formControlName="city">
+                     </div>
+
+                      <div class="form-group">
+                        <label for="">State:</label>
+                        <input class="form-control" type="text" formControlName="state">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="">Country:</label>
+                        <input class="form-control" type="text" formControlName="country">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="">Zipcode:</label>
+                        <input class="form-control" type="text" formControlName="zipcode">
+                      </div>
+
+                 </div>
+               </div>
+
+               <div class="col-md-6">
+                      <h2>Permanent Address</h2>
+                   <div formGroupName="permanentAddress">
+                      <div class="form-group">
+                        <label for="">City:</label>
+                        <input class="form-control" type="text" formControlName="city">
+                     </div>
+
+                      <div class="form-group">
+                        <label for="">State:</label>
+                        <input class="form-control" type="text" formControlName="state">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="">Country:</label>
+                        <input class="form-control" type="text" formControlName="country">
+                      </div>
+
+                       <div class="form-group">
+                        <label for="">Zipcode:</label>
+                        <input class="form-control" type="text" formControlName="zipcode">
+                      </div>
+
+                  </div>
+               </div>
+
+                <label for="">
+                    <input type="checkbox" formControlName="isAddSame"> Is current and permanent address is same
+                </label>
+              </div>
+
+                  <div class="form-group" formArrayName="skills">
+                       <div class="row" *ngFor="let skill of skillsArr.controls; let i = index ">
+                         <div class="col-md-6 mt-5" >
+                            <input type="text" class="form-control"  [formControlName]="i">
+                             <strong class="mb-5" *ngIf="skillsArr.at(i)?.touched && skillsArr.at(i)?.hasError('required')">Skill is required...!</strong>
+                         </div>
+                         <div class="col-md-4 mt-5" *ngIf="i>0">
+                           <button class="btn btn-outline-danger" type="button" (click)="onRemove(i)">remove</button>
+                          </div>
+                        </div>
+
+                      <button class="btn btn-outline-primary mt-4" type="button" (click)="newSkills()" [disabled]="skillsArr.length>3">Add Skill</button>
+                   </div>
+
+               <div>
+                  <button class="btn btn-outline-primary mt-5 mb-5" (click)="onAddSubmit()" *ngIf="!IsInEditMode">Submit</button>
+                  <button class="btn btn-success mt-5 mb-5" type="button" (click)="onUpdateUser()" *ngIf="IsInEditMode" >Update User</button>
+              </div>
+
+       </form>
+          </div>
+       </div>
+   </div>
+ </div>

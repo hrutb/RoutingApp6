@@ -1,0 +1,76 @@
+
+<div class="row mt-5" *ngIf="userObj">
+
+  <div class="col-md-6">
+    <div class="card mt-5">
+      <div class="card-header"></div>
+
+      <div class="card-body">
+        <figure>
+          <img [src]="userObj.imageUrl" alt="">
+        </figure>
+
+        {{ userObj.name }}
+        <strong>{{ userObj.role }}</strong>
+      </div>
+
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <button mat-raised-button color="primary" (click)="onEdit()">
+          Edit
+        </button>
+
+        <button mat-raised-button color="warn" (click)="onRemove()">
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+
+    <div class="card mt-5">
+      <div class="card-body">
+        <strong>Description:</strong> {{ userObj.description }} <br>
+        <strong>Experience:</strong> {{ userObj.experience }} <br>
+        <strong>Is Active:</strong> {{ userObj.status ? 'Yes' : 'No' }}
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="card mt-5 mb-5">
+      <div class="card-body">
+        <mat-chip-list>
+          <mat-chip *ngFor="let skill of userObj.skills">
+            {{ skill }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+
+    <!-- Address -->
+    <div class="card mb-5 mt-5">
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-6" *ngIf="userObj.currentAddress">
+            <h2>Current Address</h2>
+            <strong>City:</strong> {{ userObj.currentAddress.city }} <br>
+            <strong>State:</strong> {{ userObj.currentAddress.state }} <br>
+            <strong>Country:</strong> {{ userObj.currentAddress.country }} <br>
+            <strong>Zipcode:</strong> {{ userObj.currentAddress.zipcode }} <br>
+          </div>
+
+          <div class="col-md-6" *ngIf="userObj.permanentAddress">
+            <h2>Permanent Address</h2>
+            <strong>City:</strong> {{ userObj.permanentAddress.city }} <br>
+            <strong>State:</strong> {{ userObj.permanentAddress.state }} <br>
+            <strong>Country:</strong> {{ userObj.permanentAddress.country }} <br>
+            <strong>Zipcode:</strong> {{ userObj.permanentAddress.zipcode }} <br>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

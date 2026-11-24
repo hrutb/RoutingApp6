@@ -1,0 +1,53 @@
+
+
+ <div class="card">
+   <div class="card-body">
+     <ng-container *ngIf="!isAllreadyHaveAccount">
+         <form [formGroup]="signUpForm" (ngSubmit)="onSingUp()">
+            <div class="formGroup">
+                  <label for="">Name:</label>
+                  <input type="text" class="form-control" formControlName="name">
+
+            </div>
+             <div class="formGroup">
+                  <label for="">email:</label>
+                  <input type="text" class="form-control" formControlName="email">
+            </div>
+            <div class="formGroup">
+                  <label for="">Password:</label>
+                  <input type="text" class="form-control" formControlName="password">
+            </div>
+            <div class="formGroup">
+                <label for="">Role:</label>
+                <select type="text" class="form-control" formControlName="role">
+                   <option value="buyer">Buyer</option>
+                   <option value="admin">Admin</option>
+                   <option value="superAdmin">SuperAdmin</option>
+                </select>
+            </div>
+              <div class="">
+                   <button class="btn btn-outline-info" type="submit" >create Account</button>
+              </div>
+       </form>
+      <a href="javascript:;" (click)="isAllreadyHaveAccount=true">Allready Have Account ! Login</a>
+     </ng-container>
+    <ng-container *ngIf="isAllreadyHaveAccount">
+          <form  [formGroup]="loginform" (ngSubmit)="onLogin()">
+            <div class="formGroup">
+               <label for="">email:</label>
+               <input type="text" class="form-control" formControlName="email">
+            </div>
+            <div class="formGroup">
+              <label for="">Password:</label>
+              <input type="text" class="form-control" formControlName="password">
+            </div>
+            <div class="">
+                <button class="btn btn-outline-info" (click)="onLogin()">Login</button>
+            </div>
+          </form>
+          <a href="javascript:;" (click)="isAllreadyHaveAccount=false">Don't have account? Signin</a>
+    </ng-container>
+
+   </div>
+ </div>
+
